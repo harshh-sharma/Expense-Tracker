@@ -3,6 +3,7 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import googleRoutes from "./modules/auth/google.auth.route.js";
+import expenseRoute from "./modules/expenses/expense.route.js";
 import passport from "passport";
 
 import "./config/passport.js";
@@ -32,6 +33,7 @@ io.on("connection", (socket) => {
 // Routes
 app.use("/auth", googleRoutes);
 app.use("/api/users",userRoute);
+app.use("/api/expenses",expenseRoute);
 
 app.get("/", (req, res) => {
   res.json({ message: "API is live" });
